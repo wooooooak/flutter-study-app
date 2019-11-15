@@ -1,5 +1,8 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_app/src/saved.dart';
+
+import 'saved.dart';
 
 class RandomList extends StatefulWidget {
   @override
@@ -12,8 +15,21 @@ class _RandomListState extends State<RandomList> {
 
   @override
   Widget build(BuildContext context) {
+    SavedList(saved: _saved,);
+
     return Scaffold(
-      appBar: AppBar(title: Text("naming app")),
+      appBar: AppBar(
+        title: Text("naming app"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.list),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SavedList(saved: _saved)));
+            },
+          )
+        ],
+      ),
       body: _buildList(),
     );
   }
@@ -48,7 +64,6 @@ class _RandomListState extends State<RandomList> {
           } else {
             _saved.add(pair);
           }
-          print(_saved);
         });
       },
     );

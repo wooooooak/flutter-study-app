@@ -1,9 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/src/bloc/Bloc.dart';
+import 'package:flutter_study_app/src/randomlist/bloc/Bloc.dart';
 import 'package:flutter_study_app/src/saved.dart';
 
-import 'saved.dart';
+import '../../saved.dart';
 
 class RandomList extends StatefulWidget {
   @override

@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_study_app/src/bloc/Bloc.dart';
+
+import 'randomlist/bloc/Bloc.dart';
 
 class SavedList extends StatefulWidget {
   @override

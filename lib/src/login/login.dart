@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
 
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: <Widget>[
@@ -26,61 +26,8 @@ class AuthPage extends StatelessWidget {
             Stack(
               // Form With Login Button
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(size.width * 0.05),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    elevation: 6,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 12, right: 12, top: 12, bottom: 32),
-                      child: Form(
-                          key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              TextFormField(
-                                controller: _emailController,
-                                decoration: InputDecoration(
-                                    icon: Icon(Icons.account_circle),
-                                    labelText: "Email"),
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return "Pleas input correct Email.";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                              TextFormField(
-                                controller: _passwordController,
-                                decoration: InputDecoration(
-                                    icon: Icon(Icons.vpn_key),
-                                    labelText: "Email"),
-                                validator: (String value) {
-                                  if (value.isEmpty) {
-                                    return "Pleas input correct Password.";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
-                              Container(
-                                height: 8,
-                              ),
-                              Text("Forget Password"),
-                            ],
-                          )),
-                    ),
-                  ),
-                ),
-                //
-                // Container(
-//                  width: 100,
-//                  height: 50,
-//                  color: Colors.black,
-//                ),
+                _inputForm(size), //
+                _authButton(size),
               ],
             ),
             Container(
@@ -93,6 +40,66 @@ class AuthPage extends StatelessWidget {
           ],
         )
       ]),
+    );
+  }
+
+  Widget _authButton(Size size) => Positioned(
+        left: size.width * 0.15,
+        right: size.width * 0.15,
+        bottom: 0,
+        child: RaisedButton(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Text("Login"),
+            color: Colors.cyan,
+            onPressed: () {}),
+      );
+
+  Widget _inputForm(Size size) {
+    return Padding(
+      padding: EdgeInsets.all(size.width * 0.05),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 6,
+        child: Padding(
+          padding: EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 32),
+          child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        icon: Icon(Icons.account_circle), labelText: "Email"),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return "Pleas input correct Email.";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                        icon: Icon(Icons.vpn_key), labelText: "Email"),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return "Pleas input correct Password.";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  Container(
+                    height: 8,
+                  ),
+                  Text("Forget Password"),
+                ],
+              )),
+        ),
+      ),
     );
   }
 }
